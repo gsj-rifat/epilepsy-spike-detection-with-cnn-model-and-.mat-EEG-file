@@ -1,10 +1,45 @@
-# epilepsy-spike-detection-with-cnn-model-and-.mat-EEG-file
-Automatic Detection of Epilepsy-typical  Spikes in EEG with CNN and Sequential model.
-In this project, the data is a multichannel EEG data but it is a 2D array with .mat format. So the data is converted into Numpy array, on the other side the metadata is creacted.
-Then the raw data is produced with joining the metadata and the numpy array. Then the data is filtered with low and highpass and notch filter.
-If you have more than one files of data, the you can also concatenate the data and build the raw data.
-There are one set of data, but for more data requirements, three sets of synthetic data is produced by time shifting method.
-Then the epochs are created and features are extracted. Features are Mean Amplitude Value,Amplitude Standard Deviation, Amplitude Skewness, Amplitude Kurtosis, Katz Fractal Dimension, Shannon’s Entropy and Spectrogram.
+                            Automatic Detection of Epilepsy-Typical Spikes in EEG
 
-After that the model is build. About the model, it is an Ensemble model because it is created with both CNN and sequential model. The base work is the spectrogram is processed in the CNN model first and then the output is fed to a sequential model along with the other features.
+                            
+This repository contains the implementation of a machine learning-based approach for the automatic detection of epilepsy-typical spikes in EEG signals. The project aims to enhance the efficiency and accuracy of spike detection, assisting clinicians in identifying epileptogenic zones and improving seizure onset detection.
 
+**Project Overview**
+Epilepsy is a neurological disorder affecting millions worldwide. EEG (Electroencephalography) is a crucial tool in epilepsy diagnosis, but manual spike detection is time-consuming and prone to human error. This project develops a machine learning model to automate and improve the detection of epilepsy-related spikes.
+
+**Key Components**
+Data Structure & Visualization
+
+Initially the EEG data is a 2D numpy array in .mat format. First a raw data is created by building a metadata for the 2D numpy array. Then a multichannel EEG data is build out of it. Then Raw EEG data processed using the MNE-Python library.
+Visualization of EEG signals and comparison between channels.
+
+**Preprocessing**
+
+Noise filtering: Applied 50Hz notch filter and bandpass filtering (0.25Hz–50Hz) to remove artifacts.
+Epoching: Divided signals into fixed-length segments with overlapping and non-overlapping strategies.
+Data augmentation: Used techniques like noise injection, signal shifting, scaling, cropping, and generative models.
+
+**Feature Extraction**
+
+Extracted statistical, fractal, and entropy-based features.
+Spectrogram generation for CNN-based models.
+
+**Model Development & Evaluation**
+
+Implemented Sequential Model, CNN Model, and Ensemble Model.
+Evaluated using accuracy, precision, recall, and confusion matrices.
+CNN Model achieved 98.62% training accuracy, but showed overfitting.
+Sequential Model provided a more reliable detection performance for non-spike cases.
+Ensemble Model showed room for improvement in balancing precision and recall.
+
+**Future Work**
+
+Improving data quality and feature selection.
+Fine-tuning model parameters and exploring alternative architectures.
+Expanding validation with diverse patient datasets.
+
+**Technologies Used**
+Python
+MNE Library (EEG signal processing)
+NumPy, Pandas, Matplotlib (Data processing & visualization)
+TensorFlow / PyTorch (Machine learning model development)
+Scikit-Learn (Evaluation metrics)
